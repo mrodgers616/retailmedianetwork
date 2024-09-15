@@ -1,7 +1,7 @@
 {
   "name": "buildTemplate",
-  "description": "Boilerplate & template for Vercel projects using Next.js, Firebase and shadcn/ui.",
-  "author": "Enesien Software <contact@enesien.com> (https://enesien.com)",
+  "description": "Template for startup idea",
+  "author": "Matthew Rodgers",
   "version": "0.1.0",
   "private": true,
   "scripts": {
