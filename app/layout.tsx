@@ -9,9 +9,9 @@ import { ReactNode } from "react";
 const font = Work_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Builders | Vercel Next.JS Firebase Shadcn/ui Tailwind Boilerplate",
+  title: "Sample Title name",
   description:
-    "Builders is a Vercel Next.JS Firebase Shadcn/ui Tailwind Boilerplate project to help you get started with your next project.",
+    "Link your small business and get started today!",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
