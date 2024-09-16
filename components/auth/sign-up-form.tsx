@@ -49,12 +49,8 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onShowLogin, onSignUp }) => {
       setIsLoading(true);
       const user = await createUserWithEmailAndPassword(auth, email, password);
       if (user?.user.uid && user.user.email) {
-        // create user in firestore here if you want
-        // Import necessary Firestore functions
-        // Get Firestore instance
         const db = getFirestore();
 
-        // Create a new document in the 'users' collection
         await setDoc(doc(db, "users", user.user.uid), {
           email: user.user.email,
           createdAt: new Date(),
@@ -77,9 +73,9 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onShowLogin, onSignUp }) => {
   };
 
   return (
-    <>
+    <div className="w-full max-w-md mx-auto px-4 py-8">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(signup)}>
+        <form onSubmit={form.handleSubmit(signup)} className="space-y-6">
           <fieldset disabled={isLoading} className="space-y-4">
             <FormField
               control={form.control}
@@ -88,9 +84,9 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onShowLogin, onSignUp }) => {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} />
+                    <Input type="email" {...field} className="w-full" />
                   </FormControl>
-                  <FormDescription>
+                  <FormDescription className="text-sm">
                     A valid email is required.
                   </FormDescription>
                   <FormMessage />
@@ -104,26 +100,30 @@ export const SignUpForm: FC<SignUpFormProps> = ({ onShowLogin, onSignUp }) => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" {...field} />
+                    <Input type="password" {...field} className="w-full" />
                   </FormControl>
-                  <FormDescription>
+                  <FormDescription className="text-sm">
                     Must be at least 8 characters long.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit" className="w-full">
+              {isLoading ? 'Signing Up...' : 'Sign Up'}
+            </Button>
           </fieldset>
         </form>
       </Form>
 
-      <p className="mt-4 text-sm">
-        Already joined?{" "}
-        <Button variant="link" onClick={onShowLogin}>
-          Sign in instead.
-        </Button>
-      </p>
-    </>
+      <div className="mt-6 text-center">
+        <p className="text-sm">
+          Already joined?{" "}
+          <Button variant="link" onClick={onShowLogin} className="p-0">
+            Sign in instead.
+          </Button>
+        </p>
+      </div>
+    </div>
   );
 };

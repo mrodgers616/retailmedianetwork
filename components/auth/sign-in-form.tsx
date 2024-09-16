@@ -59,9 +59,9 @@ export const SignInForm: FC<SignInFormProps> = ({ onShowSignUp }) => {
   };
 
   return (
-    <>
+    <div className="w-full max-w-md mx-auto px-4 py-8">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(login)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(login)} className="space-y-4">
           <FormField
             control={form.control}
             name="email"
@@ -69,7 +69,7 @@ export const SignInForm: FC<SignInFormProps> = ({ onShowSignUp }) => {
               <FormItem>
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field} />
+                  <Input type="email" {...field} className="w-full" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,30 +82,32 @@ export const SignInForm: FC<SignInFormProps> = ({ onShowSignUp }) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <Input type="password" {...field} className="w-full" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={isLoading}>
-            Submit
+          <Button type="submit" disabled={isLoading} className="w-full">
+            {isLoading ? 'Signing In...' : 'Sign In'}
           </Button>
         </form>
       </Form>
-      <p className="mt-4 text-sm">
-        Forgot password?{" "}
-        <Button variant="link" onClick={() => setIsResetOpen(true)}>
-          Reset
-        </Button>
-      </p>
-      <p className="text-sm">
-        Not a member?{" "}
-        <Button variant="link" onClick={onShowSignUp}>
-          Sign up instead.
-        </Button>
-      </p>
+      <div className="mt-6 text-center">
+        <p className="text-sm">
+          Forgot password?{" "}
+          <Button variant="link" onClick={() => setIsResetOpen(true)} className="p-0">
+            Reset
+          </Button>
+        </p>
+        <p className="text-sm mt-2">
+          Not a member?{" "}
+          <Button variant="link" onClick={onShowSignUp} className="p-0">
+            Sign up instead.
+          </Button>
+        </p>
+      </div>
       <ModalForgotPassword isOpen={isResetOpen} setIsOpen={setIsResetOpen} />
-    </>
+    </div>
   );
 };
